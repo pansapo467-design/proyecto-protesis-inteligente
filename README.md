@@ -37,3 +37,27 @@ Sistema- de gestión de citas y botón de pánico con envío de coordenadas
 
 # Integración de IA
 El sistema utiliza modelos de lenguaje para analizar las tendencias de los signos vitales y proporcionar diagnósticos preliminares al usuario, mejorando la interacción humano-máquina
+
+# 4. Arquitectura del Sistema
+El sistema sigue una arquitectura de ( Cliente-Servidor ) con un enfoque en la nube y procesamiento local
+Capa de Dispositivo- ( Hardware Simulado ) Sensores que envían datos de signos vitales
+Capa de ComunicaciónTúnel- seguro mediante ngrok para exponer el servidor local a la red externa
+Capa de Servidor- ( Backend ) Lógica de negocio en Flask que gestiona las peticiones de Lovable y la persistencia de datos
+Capa de Datos- Base de datos relacional PostgreSQL para el almacenamiento seguro de expedientes médicos
+Capa de Presentación- ( Frontend ) Interfaz interactiva en React que consume la API en tiempo real
+ 
+# Pila de Tecnologías Utilizadas ( Tech Stack )
+Para el desarrollo de SmartBreast se seleccionaron herramientas de alto rendimiento
+Frontend-React.js, Tailwind CSS ( vía Lovable )
+Backend- Python 3.x, Flask ( Microframework )
+Base de Datos- PostgreSQL ( Servidor local )
+Conectividad- ngrok ( Protocolo de túnel HTTP )
+Control de Versiones- Git y GitHub
+Inteligencia Artificial- Modelos de lenguaje ( LLM ) para el asistente médico virtual
+
+# Desafíos Tecnológicos
+Durante el desarrollo se enfrentaron y resolvieron los siguientes retos
+Sincronización en Tiempo Real- Lograr que la interfaz de Lovable refleje los cambios en la base de datos local en menos de 10 segundos
+Seguridad de Datos- Implementación de CORS (Cross-Origin Resource Sharing) para proteger las rutas de la API
+Persistencia de Datos Críticos- Manejo de restricciones de integridad en PostgreSQL para evitar duplicidad en el estado de la prótesis
+Interoperabilidad- Configuración de un puente de comunicación entre un servidor local detrás de un firewall y una aplicación web en la nube
