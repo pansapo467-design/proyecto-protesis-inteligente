@@ -85,3 +85,20 @@ requirements.txt- Dependencias del sistema ( Flask, Psycopg2, etc )
 Python 3.x
 PostgreSQL 16
 Ngrok
+
+# Bitácora de Desarrollo - 13 de Febrero de 2026
+Objetivo- Estabilización de la API, vinculación de datos reales y humanización del asistente inteligente brasie
+
+# Errores Solucionados y Mejoras Técnicas
+Eliminación de Errores 404 ( ID Mismatch ) 
+Problema- El sistema intentaba consultar al usuario_id: 1 por defecto, el cual no existía en la DB, rompiendo la visualización en Lovable
+Solución- Se implementó una lógica de "Respaldo Dinámico" en Flask que entrega datos base si el ID no es encontrado, manteniendo la UI operativa en todo momento
+Corrección de Error 500 ( SQL Schema Error )
+Problema- Fallo en la inserción de auditorías por discrepancia en nombres de columnas entre Python y PostgreSQL
+Solución- Refactorización de las sentencias SQL para alinear el backend con el esquema real de la base de datos
+# Conexión de Datos Reales al Chat
+Mejora- El asistente B-MON dejó de dar respuestas estáticas. Ahora, al preguntar por la "batería" o "estado", el backend realiza un SELECT a las tablas de la base de datos y responde con las cifras reales de los sensores
+# Implementación de Motor de Intenciones
+Mejora: Se programó una lógica de detección de palabras clave para que el asistente identifique reportes de dolor, emergencias o saludos, respondiendo con empatía y validación clínica en lugar de frases robóticas
+# Infraestructura para Sensores
+Resultado- Se validó el flujo completo de datos. El sistema quedó preparado ( Ready-to-Hardware ) para recibir señales biométricas reales, procesarlas en la DB y mostrarlas en el dashboard.
