@@ -61,3 +61,27 @@ Sincronización en Tiempo Real- Lograr que la interfaz de Lovable refleje los ca
 Seguridad de Datos- Implementación de CORS (Cross-Origin Resource Sharing) para proteger las rutas de la API
 Persistencia de Datos Críticos- Manejo de restricciones de integridad en PostgreSQL para evitar duplicidad en el estado de la prótesis
 Interoperabilidad- Configuración de un puente de comunicación entre un servidor local detrás de un firewall y una aplicación web en la nube
+
+# Estructura del Directorio
+src/app.py- Punto de entrada de la API Flask que gestiona las peticiones de Lovable
+data/- Contiene los scripts SQL para la replicación de la base de datos PostgreSQL
+requirements.txt- Listado de dependencias necesarias para la ejecución del entorno
+# Proyecto Prótesis Inteligente (SmartCare)
+
+Sistema de monitoreo biométrico en tiempo real para pacientes con prótesis mamarias, integrado con IA y base de datos relacional.
+
+# Avances del Proyecto (12/Feb/2026)
+Base de Datos- Estructura completa en PostgreSQL con tablas de usuarios, lecturas_sensores, estado_protesis y ai_assistant_audit
+API Backend- Servidor Flask funcional que sirve datos reales a través de endpoints seguros
+Conectividad- Implementación de túneles ngrok para permitir la comunicación entre el servidor local y la App en Lovable
+IA-Sistema de auditoría para registrar consultas y respuestas del asistente médico
+
+# Estructura de Carpetas
+src/app.py- Servidor principal y lógica de rutas API
+data/- Scripts SQL para la creación y población de la base de datos
+requirements.txt- Dependencias del sistema ( Flask, Psycopg2, etc )
+
+# Requisitos
+Python 3.x
+PostgreSQL 16
+Ngrok
