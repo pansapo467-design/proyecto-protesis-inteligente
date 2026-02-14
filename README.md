@@ -120,3 +120,34 @@ Inteligencia Artificial- Asistente "Brasie" integrado con registro de auditoría
 `POST /funciones/v1/biometría`- Recepción de sensores ( Temp/Batería )
 `GET /api/doctor/alertas`- Panel de monitoreo médico con cálculo de riesgo
 `POST /api/chat- Interacción con el asistente Brasie
+# diagrama integral de la arquitectura
+graph TD
+    subgraph "Hardware y Simulación (Bmon)"
+        A[Sensores de Prótesis] --> B[App Bmon / Chat Paciente]
+        B -- "Biometría y Eventos /store" --> C[Ngrok Tunnel]
+    end
+
+    subgraph "Backend Local (Servidor Flask)"
+        C --> D[app.py - Lógica de Control]
+        D --> E{Adaptador de Rutas}
+        E -- "Redirección de Supabase" --> D
+        D -- "Motor de IA" --> I[Asistente Brasie]
+    end
+
+    subgraph "Capa de Datos (PostgreSQL)"
+        D -- "Query SQL" --> F[(Base de Datos Central)]
+        F --> F1[Tabla: usuarios]
+        F --> F2[Tabla: estado_protesis]
+        F --> F3[Tabla: medical_appointments]
+        F --> F4[Tabla: ai_assistant_audit]
+    end
+
+    subgraph "Interfaz Médica (Lovable)"
+        G[App Doctor / Dashboard] -- "Monitoreo en Tiempo Real" --> C
+        D -- "Cálculo de Riesgo" --> G
+    end
+
+    %% Relaciones de flujo
+    I -.-> B
+    F1 -.-> G
+    F2 -.-> G
