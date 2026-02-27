@@ -151,3 +151,29 @@ graph TD
     I -.-> B
     F1 -.-> G
     F2 -.-> G
+
+    # BMON - Sistema de Monitoreo Biométrico IoT 
+
+## Descripción
+BMON es una plataforma de telemetría médica en tiempo real que captura datos de una pulsera inteligente H59MAX, los procesa mediante un gateway de Python y los visualiza en un dashboard interactivo.
+
+## Bitácora de Desarrollo
+
+### Día 26/27-02-2026: Infraestructura y Base de Datos
+- **Configuración de Base de Datos:** Se montó un servidor PostgreSQL para el almacenamiento persistente de datos.
+- **Modelo de Datos:** Creación de tablas para `users`, `sensor_readings` (ritmo cardíaco, presión, oxígeno, temperatura) y estados de prótesis.
+- **Conexión Cloud:** Integración inicial de la base de datos con Lovable para la visualización.
+
+### Día 2: Ingeniería Inversa y Conectividad (El reto técnico)
+- **Desafío 1 (Conectividad):** El PC no detectaba la pulsera. 
+  - *Solución:* Se identificó la dirección MAC (`30:32:45:32:29:01`) y se aisló la señal apagando el Bluetooth del smartphone para evitar el secuestro de la conexión.
+- **Desafío 2 (Protocolo BLE):** Error de "Characteristic not found".
+  - *Solución:* Se realizó un escaneo de descriptores GATT (Ingeniería Inversa) para encontrar la característica exacta de notificación (`6e400003-b5a3-f393-e0a9-e50e24dcca9e`).
+- **Integración Middleware:** Desarrollo de un servidor en Flask (`app.py`) que actúa como puente entre el hardware y la base de datos, manejando peticiones POST y habilitando CORS para el dashboard.
+
+## Arquitectura del Sistema
+1. **Nodo Sensor:** Pulsera H59MAX (Vía Bluetooth Low Energy).
+2. **Gateway (Middleware):** Script Python (`pulsera.py`) que traduce bytes crudos a datos médicos.
+3. **Backend:** Flask API con SQLAlchemy.
+4. **Almacenamiento:** PostgreSQL.
+5. **Frontend:** Dashboard dinámico en Lovable/Bmon.
